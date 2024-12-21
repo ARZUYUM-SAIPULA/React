@@ -1,1 +1,25 @@
+import React, { useState, useEffect } from 'react';
+import Web3 from 'web3';
+
+const web3 = new Web3(window.ethereum);
+
+function Wallet() {
+  const [account, setAccount] = useState('');
+  
+  useEffect(() => {
+    if (window.ethereum) {
+      window.ethereum.enable().then(accounts => {
+        setAccount(accounts[0]);
+      });
+    }
+  }, []);
+
+  return (
+    <div>
+      <h3>Connected Account: {account}</h3>
+    </div>
+  );
+}
+
+export default Wallet;
 
